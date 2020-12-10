@@ -1,0 +1,36 @@
+{
+  "name": "ipapk",
+  "version": "0.0.3",
+  "description": "一个用于生成ipa/apk静态下载页面的工具",
+  "main": "index.js",
+  "bin": {
+    "ipapk": "index.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "bansky",
+  "license": "MIT",
+  "dependencies": {
+    "app-info-parser": "^0.3.13",
+    "commander": "^6.2.0",
+    "filesize": "^6.1.0",
+    "fs-extra": "^9.0.1",
+    "merge": "^2.1.0"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BanKnight/ipapk.git"
+  },
+  "keywords": [
+    "ipa",
+    "apk",
+    "static",
+    "js"
+  ],
+  "bugs": {
+    "url": "https://github.com/BanKnight/ipapk/issues"
+  },
+  "homepage": "https://github.com/BanKnight/ipapk#readme"
+}
