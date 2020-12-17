@@ -4,7 +4,7 @@ const merge = require('merge')
 
 module.exports = function(base_url)
 {
-    const config_path = path.resolve("config.json")
+    const config_path = path.resolve("ipapk_config.json")
 
     const default_config = require("../templates/config.json")
 
@@ -20,8 +20,5 @@ module.exports = function(base_url)
 
     fs.writeFileSync(config_path, JSON.stringify(config,null,"\t"))
 
-    fs.ensureDirSync(path.resolve("./ipas"))
-    fs.ensureDirSync(path.resolve("./apks"))
-
-    console.log("create config.json done!")
+    console.log("init success:create ipapk_config.json done!")
 }

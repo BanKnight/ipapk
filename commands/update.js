@@ -11,8 +11,8 @@ const apk = require("../templates/apk")
 
 module.exports = async function()
 {
-    const config_path = path.resolve("config.json")
-    const cacahe_path = path.resolve("cacahe.json")
+    const config_path = path.resolve("ipapk_config.json")
+    const cacahe_path = path.resolve("ipapk_cache.json")
 
     if(fs.existsSync(config_path) == false)
     {
@@ -55,6 +55,16 @@ async function walk(dir,callback)
 
     for(let file of files)
     {
+        if(file == "node_modules")
+        {
+            continue
+        }
+
+        if(file.startsWith("."))
+        {
+            continue
+        }
+
         const full = path.join(dir,file)
         if(fs.statSync(full).isDirectory())
         {
@@ -62,25 +72,16 @@ async function walk(dir,callback)
         }
         else
         {
-            await callback(full)
+            await callback(full,file)
         }
     }
 }
 
 async function walk_ipas(env)
 {    
-    const ipas_folder = path.resolve("./ipas")
-
-    if(await fs.exists(ipas_folder) == false)
-    {
-        return apps
-    }
-
     const apps = []
 
-    await walk(ipas_folder,async function(file){  
-
-        const basename = path.basename(file)
+    await walk(process.cwd(),async function(file,basename){  
         const extname = path.extname(file)
         const relative = path.relative(process.cwd(),file)
 
@@ -126,18 +127,9 @@ async function walk_ipas(env)
 
 async function walk_apks(env)
 {
-    const folder = path.resolve("./apks")
-
     const apps = []
 
-    if(await fs.exists(folder) == false)
-    {
-        return apps
-    }
-
-    await walk(folder,async function(file){
-
-        const basename = path.basename(file)
+    await walk(process.cwd(),async function(file,basename){
         const extname = path.extname(file)
         const relative = path.relative(process.cwd(),file)
 
@@ -203,6 +195,7 @@ function output_ipas(all,env)
         version: app.version,
         build: app.build,
         name : app.name,
+        filename : app.filename,
         mtime: new Date(app.mtime).toLocaleString(),
         size: filesize(app.size),
         plist: `itms-services://?action=download-manifest&url=${config.base_url}/plist/${plist_name}`,
@@ -233,6 +226,7 @@ function output_apks(all,env)
         version: app.version,
         build: app.build,
         name : app.name,
+        filename : app.filename,
         mtime: new Date(app.mtime).toLocaleString(),
         size: filesize(app.size),
       }
