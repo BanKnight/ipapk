@@ -189,7 +189,7 @@ function output_ipas(all,env)
       const plist_name = `${path.basename(app.filename, path.extname(app.filename))}.plist`
   
       const one = {
-        url : `${config.base_url}/ipas/${app.filename}`,
+        url : `${config.base_url}/${app.relative}`.replace("\\","/"),
         icon: app.icon || "icon.png",
         identifier : app.identifier,
         version: app.version,
@@ -222,7 +222,7 @@ function output_apks(all,env)
     for(const app of all)
     {  
       const one = {
-        url : `${config.base_url}/apks/${app.filename}`,
+        url : `${config.base_url}/${app.relative}`.replace("\\","/"),
         version: app.version,
         build: app.build,
         name : app.name,
