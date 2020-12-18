@@ -1,10 +1,10 @@
 {
   "name": "ipapk",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "一个用于生成ipa/apk静态下载页面的工具",
-  "main": "index.js",
+  "main": "ipapk.js",
   "bin": {
-    "ipapk": "index.js"
+    "ipapk": "ipapk.js"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

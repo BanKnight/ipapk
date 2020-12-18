@@ -9,9 +9,13 @@ npm install -g ipapk
 ```
 ipapk init 基准地址     
 ```
-+ 放入ipa/apk 后更新
++ 放入ipa/apk 后,生成index.html
 ```
 ipapk update     
+```
++ 启动http服务器
+```
+ipapk run 端口     
 ```
 
 # 下载
