@@ -16,7 +16,7 @@ module.exports = function(base_url)
         config = merge(true,default_config,config)
     }
 
-    config.base_url = base_url || config.base_url || "https://127.0.0.1"
+    config.base_url = base_url || config.base_url || "http://127.0.0.1"
 
     fs.writeFileSync(config_path, JSON.stringify(config,null,"\t"))
 
