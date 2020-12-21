@@ -1,6 +1,6 @@
 {
   "name": "ipapk",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "一个用于生成ipa/apk静态下载页面的工具",
   "main": "ipapk.js",
   "bin": {

@@ -12,7 +12,7 @@ const apk = require("../templates/apk")
 module.exports = async function()
 {
     const config_path = path.resolve("ipapk_config.json")
-    const cacahe_path = path.resolve("ipapk_cache.json")
+    const cache_path = path.resolve("ipapk_cache.json")
 
     if(fs.existsSync(config_path) == false)
     {
@@ -21,13 +21,13 @@ module.exports = async function()
         return
     }
 
-    if(fs.existsSync(cacahe_path) == false)
+    if(fs.existsSync(cache_path) == false)
     {
-        fs.writeFileSync(cacahe_path,JSON.stringify({}))
+        fs.writeFileSync(cache_path,JSON.stringify({}))
     }
 
     const config = require(config_path)
-    const cache = require(cacahe_path)
+    const cache = require(cache_path)
 
     const env = {
         config,
@@ -46,7 +46,7 @@ module.exports = async function()
 
     update_cache(cache,ipas,apks)
 
-    fs.writeFileSync(cacahe_path,JSON.stringify(cache,null,4))
+    fs.writeFileSync(cache_path,JSON.stringify(cache,null,4))
 }
 
 async function walk(dir,callback) 
